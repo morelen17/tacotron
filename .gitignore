@@ -4,3 +4,5 @@ __pycache__/
 .DS_Store
 run*.sh
 .idea/
+msu_ru_nsh_clunits/
+training/
