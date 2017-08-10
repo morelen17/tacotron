@@ -21,7 +21,6 @@ _num_symbols = _num_normal_symbols
 _whitespace_re = re.compile(r'\s+')
 
 
-
 def num_symbols():
     """Returns number of symbols in the alphabet."""
     return _num_symbols
@@ -49,8 +48,15 @@ def to_string(sequence, remove_eos=False):
 
 
 def _text_to_sequence(text, force_lowercase, expand_abbreviations):
+    text = _remove_extra_symbols(text)
     if force_lowercase:
         text = text.lower()
     text = re.sub(_whitespace_re, ' ', text)
     return [_char_to_id[c] for c in text]
 
+
+def _remove_extra_symbols(text):
+    processed = ''
+    for char in text:
+        processed += char if char in _valid_input_chars else ''
+    return processed
